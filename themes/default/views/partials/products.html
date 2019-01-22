@@ -1,6 +1,6 @@
 <div class="row">
 @{foreach m in model.items}
-	<div class="col-md-4">
+	<div class="col-md-6">
 		<div class="product" data-new="@{m.pricemin}" data-old="@{m.priceold}" data-currency="@{global.config.currency_entity}">
 			@{if m.isnew}
 				<div class="flags">

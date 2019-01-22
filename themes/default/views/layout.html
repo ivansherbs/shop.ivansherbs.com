@@ -22,31 +22,17 @@
 
 	<div class="container">
 
-		<div class="relative">
-			<div class="account">
-				@{if user}
-					<a href="@{sitemap_url('account')}" class="b">@{user.name}</a>
-					<a href="@{sitemap_url('settings')}"><i class="fa fa-cog"></i>@(Settings)</a>
-					<a href="@{sitemap_url('logoff')}"><i class="fa fa-sign-out"></i>@(Sign out)</a>
-				@{else}
-					<a href="@{sitemap_url('account')}"><i class="fa fa-lock"></i>@(Sign in)</a>
-				@{fi}
-			</div>
-		</div
-
 		<div class="row">
 			<div class="col-md-3">
-				<section class="categories">
-					<a href="/" class="logo"><img src="/img/logo.png" alt="@{'%name'}" border="0" /></a>
+                <section class="categories mb10">
+                    <a href="/" class="logo">
+                        @{view('partials/logo')}
+                    </a>
 					<div class="categoriescontainer">
-						<div class="categoriesbody bg-yellow fs12 ui-center m">
-							This is a new version of new <b>Total.js Eshop</b>. This version will be available soon for all Total.js members.
-						</div>
-
-						<div class="categoriesbody npb">
+						<div class="categoriesbody npb hidden">
 							<div class="caption">@(We recommend)</div>
 						</div>
-						<nav>
+						<nav class="hidden">
 							@{foreach m in F.global.navigations.panel.children}
 								<a href="@{m.url}"><i class="fa fa-caret-right"></i>@{m.name}</a>
 							@{end}
@@ -55,19 +41,28 @@
 							<a href="@{sitemap_url('popular')}"><i class="fa fa-caret-right"></i>@(Popular products)<span>@(NEW)</span></a>
 							<a href="@{sitemap_url('category')}"><i class="fa fa-caret-right"></i>@(All products)</a>
 						</nav>
+                        <div class="account">
+                            @{if user}
+                                <a href="@{sitemap_url('account')}" class="b">@{user.name}</a>
+                                <a href="@{sitemap_url('settings')}"><i class="fa fa-cog"></i>@(Settings)</a>
+                                <a href="@{sitemap_url('logoff')}"><i class="fa fa-sign-out"></i>@(Sign out)</a>
+                            @{else}
+                                <a href="@{sitemap_url('account')}"><i class="fa fa-lock"></i>@(Sign in)</a>
+                            @{fi}
+                        </div>
 						<div class="categoriesbody npb">
 							<div class="caption">@(Categories)</div>
 						</div>
 						@{view('partials/categories')}
 					</div>
-					<button id="mainmenu"><i class="fa fa-chevron-down"></i></button>
+					<button id="mainmenu"><i class="fa fa-bars"></i></button>
 				</section>
 			</div>
 			<div class="col-md-9">
 				<section class="body">
 
 					<header>
-						<nav>
+						<nav class="hidden">
 							@{foreach m in F.global.navigations.menu.children}
 								<a href="@{m.url}">@{if m.icon}<i class="fa fa-@{m.icon}"></i>@{fi}@{m.name}</a>
 							@{end}
@@ -75,7 +70,7 @@
 						<div class="shoppingcart" data-m="shoppingcart.sum + shoppingcart">
 							<a href="@{sitemap_url('checkout')}"><b data-b="shoppingcart.sum" data-b-html="'@{global.config.currency_entity}'.format(value ? value.format(2) : (0).format(2))">...</b><span>@(Your shopping cart)</span></a>
 						</div>
-						<form class="search" action="@{sitemap_url('category')}" method="get">
+						<form class="search hidden" action="@{sitemap_url('category')}" method="get">
 							<button><i class="fa fa-search"></i></button>
 							<div><input type="text" placeholder="@(Search products ...)" name="q" value="@{query.q}" id="search" autocomplete="off" /></div>
 						</form>

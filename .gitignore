@@ -1,0 +1,11 @@
+# Node.js
+node_modules/
+tmp/
+
+# Vim
+*.sw?
+
+# total.js
+debug.pid
+config
+databases/

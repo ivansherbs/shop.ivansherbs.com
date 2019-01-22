@@ -2,9 +2,7 @@
 
 # Ivan's Herbs Online Shop
 
-- Built with __Total.js Eshop__`v11.0.0` (requires __Total.js__ `+v2.9.2`)
-- [Documentation](https://wiki.totaljs.com?q=eshop+welcome)
-
+- Built with [__Total.js Eshop__](https://wiki.totaljs.com?q=eshop+welcome) `v11.0.0` (requires __Total.js__ `+v2.9.2`)
 
 ## Installation
 
@@ -12,16 +10,19 @@
 -- [GraphicsMagick](http://www.graphicsmagick.org/)
 - navigate to the shop installation directory
 
+```bash
+cd eshop
 ```
-$ cd eshop
-```
+
 - install the Node.js dependencies
+```bash
+npm install
 ```
-$ npm install
-```
+
 - restore the latest database backup from S3
-```
+```bash
 TODO
+
 ```
 - run the shop on a particulat port in `debug` or `release` mode. For a debug version listening on port 8000, run
 ```

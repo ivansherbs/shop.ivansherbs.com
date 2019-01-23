@@ -14,7 +14,7 @@
 	<script>var LOGGED = +'@{if user}1@{else}0@{fi}';</script>
 </head>
 <body data-jc="exec,binder,modificator">
-	<br />
+	<br class="hidden-mobile" />
 	<div data-jc="loading" class="ui-loading@{if !repository.loading} hidden@{fi}"></div>
 	<div data-jc="shoppingcart" data-jc-path="shoppingcart" data-jc-config="discount:@{if user}@{user.discount}@{else}0@{fi}"></div>
 	<div data-jc="message" data-jc-config="button:@(Close)"></div>
@@ -92,8 +92,6 @@
 	</div>
 	<br />
 	<br />
-
 	<script src="@{global.js}"></script>
-
 </body>
 </html>

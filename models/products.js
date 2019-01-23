@@ -15,7 +15,7 @@ NEWSCHEMA('Product').make(function(schema) {
 	schema.define('body', String);
 	schema.define('bodywidgets', '[String(22)]');       // List of all used widgets
 	schema.define('category', 'String(300)', true);
-	schema.define('description', 'String(1000)', true);
+	schema.define('description', 'String(2000)', true);
 	schema.define('isnew', Boolean);
 	schema.define('ispublished', Boolean);
 	schema.define('istop', Boolean);

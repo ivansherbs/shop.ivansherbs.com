@@ -111,7 +111,7 @@ function file_image(req, res) {
 					if (req.split[1] === 'large')
 						image.miniature(1024, 768);
 					else
-						image.miniature(200, 150);
+						image.miniature(400, 300);
 
 					image.minify();
 				});

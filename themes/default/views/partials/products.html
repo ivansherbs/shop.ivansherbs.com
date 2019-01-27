@@ -21,12 +21,12 @@
 			<a href="@{m.linker}" class="name">@{m.name}</a>
 			<a href="@{if !url || url === '/'}@{sitemap_url('category')}@{fi}?manufacturer=@{m.linker_manufacturer}" class="manufacturer">@{m.manufacturer}</a>
 			<div class="price">
+				<span>@{!m.pricemin.currency()}@{if m.priceold && m.priceold > m.pricemin} <span>@{!m.priceold.currency()}</span>@{fi}</span>
 				@{if m.stock}
-					<a href="@{m.linker}" class="more"><i class="fa fa-plus"></i>@(Detail)</a>
+					<a href="@{m.linker}" class="more">@(See more)</a>
 				@{else}
 					<span class="outofstock">@(Out of stock)</span>
 				@{fi}
-				<div>@{!m.pricemin.currency()}@{if m.priceold && m.priceold > m.pricemin} <span>@{!m.priceold.currency()}</span>@{fi}</div>
 			</div>
 		</div>
 	</div>

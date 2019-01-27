@@ -15,7 +15,7 @@ input:invalid { box-shadow: none; }
 .ui-clickbox-visible nav { display: block; }
 
 .ui-gallery { margin-bottom: 20px; }
-.ui-gallery > div { padding: 10px; background-color: white; border-radius: 3px; }
+.ui-gallery > div { background-color: white; border-radius: 3px; }
 .ui-gallery img { max-width: 100%; height: auto; }
 .ui-gallery nav { margin: 10px -10px; }
 .ui-gallery nav div { width: 25%; padding: 10px; position: relative; display: inline-block; border-radius: 3px; cursor: pointer; }

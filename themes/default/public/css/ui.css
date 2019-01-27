@@ -14,7 +14,6 @@ input:invalid { box-shadow: none; }
 .ui-clickbox nav { position: absolute; z-index: 2; background-color: white; box-shadow: 0 5px 10px rgba(0,0,0,0.05); width: 100%; border-radius: 0 0 4px 4px; border: 1px solid #E0E0E0; display: none; margin-top: -3px; max-height: 200px; overflow: auto; overflow-scrolling: touch; }
 .ui-clickbox-visible nav { display: block; }
 
-.ui-gallery { margin-bottom: 20px; }
 .ui-gallery > div { background-color: white; border-radius: 3px; }
 .ui-gallery img { max-width: 100%; height: auto; }
 .ui-gallery nav { margin: 10px -10px; }

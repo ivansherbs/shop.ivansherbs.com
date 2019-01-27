@@ -112,22 +112,22 @@
 
 	<p class="detail-description"><b>@(Description)</b><br />@{model.description}</p>
 
-	@{if model.body}
-		<div class="content">
-			<br />
-			@{!model.body}
-		</div>
-		<br />
-	@{fi}
-
 	@{if model.pictures && model.pictures.length}
-	<h2>@(Pictures of @{model.name})</h2>
+	<h2 class="hidden">@(Pictures of @{model.name})</h2>
 	<div data-jc="gallery" class="ui-gallery">
 		<img src="/images/large/@{model.pictures[0]}.jpg" alt="@{model.name}" border="0" />
 		@{foreach m in model.pictures}
 			<img src="/images/small/@{m}.jpg" border="0" alt="@{model.name} @{index}" />
 		@{end}
 	</div>
+	@{fi}
+
+	@{if model.body}
+		<div class="content">
+			<br />
+			@{!model.body}
+		</div>
+		<br />
 	@{fi}
 
 @{fi}

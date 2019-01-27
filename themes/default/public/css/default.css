@@ -73,7 +73,9 @@ hr.darker { border-color: #E0E0E0; }
 .button .fa { margin-right: 5px; }
 .button-small { height: 32px; font-size: 12px; }
 
-.shoppingcart { float: right; padding: 4px 5px 0 0; width: 160px; border-radius: 3px; text-align: center; font-size: 11px; text-decoration: none !important; background-color: #E0E0E0; height: 40px; transition: all 0.3s; }
+.shoppingcart { float: right; padding: 4px 5px 0 0; width: 160px; border-radius: 3px; text-align: center; font-size: 11px; text-decoration: none !important; background-color: #E0E0E0; height: 40px; transition: all 0.3s; display: flex; }
+.shoppingcart .sc-icon { flex-grow: 1; text-align: right; margin-right: 10px; font-size: 20px; color: #AF5DA4; }
+.shoppingcart .sc-content { flex-grow: 1; text-align: left; }
 .shoppingcart b { display: block; font-size: 16px; text-decoration: none !important; color: #3F4450; line-height: 18px; }
 .shoppingcart span { color: gray; }
 .shoppingcart:hover { text-decoration: none !important; }

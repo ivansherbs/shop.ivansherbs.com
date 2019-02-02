@@ -1,6 +1,7 @@
 # Node.js
 node_modules/
 tmp/
+logs/
 
 # Vim
 *.sw?
@@ -9,3 +10,6 @@ tmp/
 debug.pid
 config
 databases/
+
+# Visual Studio Code
+.vscode/

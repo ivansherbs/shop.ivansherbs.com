@@ -424,7 +424,7 @@ NEWSCHEMA('Order').make(function(schema) {
 
 	// Sets the payment status to paid
 	schema.addWorkflow('paid', function($) {
-		NOSQL('orders').modify({ ispaid: true, datepaid: F.datetime }).where('ispaid', false).where('id', $.id || $.options.id).callback((err, count) => $.success(count > 0));
+		NOSQL('orders').modify({ ispaid: true, datepaid: F.datetime, status: 'Payment received' }).where('ispaid', false).where('id', $.id || $.options.id).callback((err, count) => $.success(count > 0));
 	});
 });
 

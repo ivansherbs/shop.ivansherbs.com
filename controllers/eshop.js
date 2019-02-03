@@ -13,6 +13,7 @@ exports.install = function() {
 
 	// Payment process
 	ROUTE('#order/paypal/', paypal_process, ['*Order', 10000]);
+	ROUTE('#order/stripe/', stripe_process, ['*Order', 10000]);
 };
 
 function view_category() {
@@ -218,4 +219,34 @@ function paypal_process(id) {
 		else
 			self.redirect(url + '?paid=0');
 	});
+}
+
+function stripe_process(id) {
+
+	var self = this;
+	self.id = id;
+
+	var url = self.sitemap_url('order', self.id);
+
+	//var searchIn = 'body';
+	var searchIn = 'query';
+	var data = self.req[searchIn];
+
+	if (data && data.stripeToken && data.stripeTokenType && data.stripeEmail) {
+
+		var stripe = require('stripe')(F.config['stripe_secretKey']);
+		(async () => {
+			const charge = await stripe.charges.create({
+				amount: 2800,
+				currency: 'eur',
+				description: 'Example charge',
+				source: data.stripeToken,
+			});
+			self.$workflow('paid', () => self.redirect(url + '?paid=1'));
+		})();
+
+		return;
+	}
+
+	self.redirect(url + '?paid=0');
 }

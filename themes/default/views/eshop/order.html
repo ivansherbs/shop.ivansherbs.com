@@ -1,5 +1,4 @@
 <h1>@{title}</h1>
-
 <div class="row">
 	<div class="col-md-6">
 		<div class="content">
@@ -24,7 +23,7 @@
 
 			<div class="contentbody">
 				<div class="help nmb"><i class="fa fa-clock-o"></i>@(Order status:)</div>
-				<div class="b red">@{model.status}</div>
+				<div class="b @{if model.status == 'Waiting for payment'}red@{fi}@{if model.status == 'Payment received'}green@{fi}">@{model.status}</div>
 			</div>
 
 			@{if model.statushistory && model.statushistory.length > 1}
@@ -70,14 +69,9 @@
 				</div>
 				@{fi}
 
-				@{if !model.isfinished && !model.ispaid && model.payment == 'PayPal'}
-					<br />
-					<div><button class="button b exec color-paypal" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Pay with PayPal)</button></div>
-					<div class="help">@(You will be redirect to secured <b>PayPal</b> payment page.)</div>
-				@{fi}
 				@{if !model.isfinished && !model.ispaid && model.payment == 'iDeal'}
 					<br />
-					<form class="stripe-form" action="your-server-side-code" method="POST">
+					<form class="stripe-form color-ideal" action="stripe" method="GET">
 						<script
 							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 							data-key="@{config.stripe_apiKey}"
@@ -91,6 +85,30 @@
 						</script>
 					</form>
 					<div class="help">@(<b>iDeal</b> will redirect you to your bank.)</div>
+				@{fi}
+				@{if !model.isfinished && !model.ispaid && model.payment == 'Credit card'}
+					<br />
+					<form class="stripe-form color-credit" action="stripe" method="GET">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="@{config.stripe_apiKey}"
+							data-amount="@{model.price * 100}"
+							data-name="Ivan's Herbs"
+							data-image="/img/logo_for_stripe.png"
+							data-locale="auto"
+							data-currency="eur"
+							data-label="Pay with credit card"
+							data-email="@{model.email}">
+						</script>
+					</form>
+					<div class="help">@(<b>Credit card</b> payments are done via Stripe.)</div>
+				@{fi}
+				@{if !model.isfinished && !model.ispaid && model.payment == 'PayPal'}
+					<br />
+					<div class="color-paypal">
+						<button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Pay with PayPal)</button>
+					</div>
+					<div class="help">@(You will be redirect to secured <b>PayPal</b> payment page.)</div>
 				@{fi}
 
 			</div>

@@ -312,6 +312,21 @@ NEWSCHEMA('Order').make(function(schema) {
 			model.isemail = undefined;
 			model.isterms = undefined;
 
+			// Copy billing data to delivery data if empty
+			var deliveryFields = {
+				'deliveryfirstname': 'firstname',
+				'deliverylastname': 'lastname',
+				'deliverystreet': 'billingstreet',
+				'deliveryzip': 'billingzip',
+				'deliverycity': 'billingcity',
+				'deliverycountry': 'deliverycountry'
+			}
+			for (var key in deliveryFields) {
+				if (!model[key]) {
+					model[key] = model[deliveryFields[key]];
+				}
+			}
+
 			// Inserts order into the database
 			db.insert(model);
 			$.success(true, model.id);

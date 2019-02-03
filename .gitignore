@@ -13,3 +13,6 @@ databases/
 
 # Visual Studio Code
 .vscode/
+
+# Mac
+.DS_Store

@@ -47,7 +47,10 @@
 			</div>
 			<hr class="nmt nmb" />
 			<div class="contentbody">
-				<div class="caption"><i class="fa fa-address-card"></i>@(Billing address)</div>
+				<div class="caption"><i class="fa fa-address-card"></i>
+					<span data-b="order.form.isdeliverydifferent" data-b-visible="value !== true">@(Billing and delivery address)</span>
+					<span data-b="order.form.isdeliverydifferent" data-b-visible="value === true" class="hidden">@(Billing address)</span>
+				</div>
 				<div class="row">
 					<div class="col-md-6 m">
 						<div data-jc="textbox" data-jc-path="order.form.billingstreet" data-jc-config="required:true;maxlength:50">@(Street)</div>
@@ -67,7 +70,7 @@
 				<div data-jc="checkbox" data-jc-path="order.form.iscompany">@(Billing to company)</div>
 				<div data-jc="checkbox" data-jc-path="order.form.isdeliverydifferent">@(Different delivery address)</div>
 			</div>
-			<div  data-b="order.form.iscompany" data-b-visible="value === true" class="hidden contentbody bg-yellow">
+			<div data-b="order.form.iscompany" data-b-visible="value === true" class="hidden contentbody bg-yellow">
 				<div data-jc="textbox" data-jc-path="order.form.company" data-jc-config="maxlength:40;required:true" class="m">@(Company name)</div>
 				<div class="row">
 					<div class="col-md-6 m">
@@ -83,7 +86,7 @@
 				<div class="row">
 					<div class="col-md-6" style="margin-top:10px">
 						<a href="javascript:void(0)" class="copy exec" data-exec="ordercopypersonal"><i class="fa fa-copy"></i>@(Copy names from above)</a>
-                        <br/>
+						<br/>
 					</div>
 				</div>
 				<div class="row">

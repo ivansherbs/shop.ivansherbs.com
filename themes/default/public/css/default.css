@@ -73,6 +73,14 @@ hr.darker { border-color: #E0E0E0; }
 .button .fa { margin-right: 5px; }
 .button-small { height: 32px; font-size: 12px; }
 
+.button.color-paypal { background-color: #009BE1; }
+.button.color-ideal { background-color: #C06; }
+.button.color-ideal img { width: 14px; }
+
+button.stripe-button-el { width: 100%; height: 50px; border-radius: 3px; background-color: #C06; background-image: none; }
+button.stripe-button-el > span { height: 50px; line-height: 50px; background-color: #C06; background-image: none; text-transform: uppercase; box-shadow: none; }
+button.stripe-button-el:not(:disabled):active, button.stripe-button-el:not(:disabled):active span { background-color: #C06; background-image: none; }
+
 .shoppingcart { float: right; padding: 4px 5px 0 0; width: 160px; border-radius: 3px; text-align: center; font-size: 11px; text-decoration: none !important; background-color: #E0E0E0; height: 40px; transition: all 0.3s; display: flex; }
 .shoppingcart .sc-icon { flex-grow: 1; text-align: right; margin-right: 10px; font-size: 20px; color: #AF5DA4; }
 .shoppingcart .sc-content { flex-grow: 1; text-align: left; }

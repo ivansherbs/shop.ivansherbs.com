@@ -70,10 +70,27 @@
 				</div>
 				@{fi}
 
-				@{if !model.isfinished && !model.ispaid}
+				@{if !model.isfinished && !model.ispaid && model.payment == 'PayPal'}
 					<br />
-					<div><button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Pay now)</button></div>
+					<div><button class="button b exec color-paypal" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Pay with PayPal)</button></div>
 					<div class="help">@(You will be redirect to secured <b>PayPal</b> payment page.)</div>
+				@{fi}
+				@{if !model.isfinished && !model.ispaid && model.payment == 'iDeal'}
+					<br />
+					<form class="stripe-form" action="your-server-side-code" method="POST">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="@{config.stripe_apiKey}"
+							data-amount="@{model.price * 100}"
+							data-name="Ivan's Herbs"
+							data-image="/img/logo_for_stripe.png"
+							data-locale="auto"
+							data-currency="eur"
+							data-label="Pay with iDeal"
+							data-email="@{model.email}">
+						</script>
+					</form>
+					<div class="help">@(<b>iDeal</b> will redirect you to your bank.)</div>
 				@{fi}
 
 			</div>
@@ -113,6 +130,7 @@
 						<div class="value">@{model.count}x</div>
 					</div>
 				</div>
+<!--
 				<div class="col-md-6 m">
 					<div class="keyvalue">
 						<div class="key">@(Discount)</div>
@@ -125,6 +143,7 @@
 						<div class="value">@{model.ip}</div>
 					</div>
 				</div>
+-->
 			</div>
 		</div>
 	</div>

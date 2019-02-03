@@ -61,6 +61,7 @@ NEWSCHEMA('Order').make(function(schema) {
 	schema.define('deliveryphone', 'Phone');
 
 	schema.define('iscompany', Boolean);
+	schema.define('isdeliverydifferent', Boolean);
 	schema.define('isfinished', Boolean);
 	schema.define('isemail', Boolean);              // internal
 	schema.define('isnewsletter', Boolean);         // internal
@@ -313,16 +314,16 @@ NEWSCHEMA('Order').make(function(schema) {
 			model.isterms = undefined;
 
 			// Copy billing data to delivery data if empty
-			var deliveryFields = {
-				'deliveryfirstname': 'firstname',
-				'deliverylastname': 'lastname',
-				'deliverystreet': 'billingstreet',
-				'deliveryzip': 'billingzip',
-				'deliverycity': 'billingcity',
-				'deliverycountry': 'deliverycountry'
-			}
-			for (var key in deliveryFields) {
-				if (!model[key]) {
+			if (!model.isdeliverydifferent) {
+				var deliveryFields = {
+					'deliveryfirstname': 'firstname',
+					'deliverylastname': 'lastname',
+					'deliverystreet': 'billingstreet',
+					'deliveryzip': 'billingzip',
+					'deliverycity': 'billingcity',
+					'deliverycountry': 'deliverycountry'
+				}
+				for (var key in deliveryFields) {
 					model[key] = model[deliveryFields[key]];
 				}
 			}

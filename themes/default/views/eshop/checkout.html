@@ -65,7 +65,7 @@
 					</div>
 				</div>
 				<div data-jc="checkbox" data-jc-path="order.form.iscompany">@(Billing to company)</div>
-				<div data-jc="checkbox" data-jc-path="order.form.otherdelivery">@(Different delivery address)</div>
+				<div data-jc="checkbox" data-jc-path="order.form.isdeliverydifferent">@(Different delivery address)</div>
 			</div>
 			<div  data-b="order.form.iscompany" data-b-visible="value === true" class="hidden contentbody bg-yellow">
 				<div data-jc="textbox" data-jc-path="order.form.company" data-jc-config="maxlength:40;required:true" class="m">@(Company name)</div>
@@ -78,7 +78,7 @@
 					</div>
 				</div>
 			</div>
-			<div data-b="order.form.otherdelivery" data-b-visible="value === true" class="hidden contentbody bg-yellow">
+			<div data-b="order.form.isdeliverydifferent" data-b-visible="value === true" class="hidden contentbody bg-yellow">
 				<div class="caption"><i class="fa fa-address-card"></i>@(Delivery address)</div>
 				<div class="row">
 					<div class="col-md-6" style="margin-top:10px">
@@ -96,7 +96,7 @@
 				</div>
 			</div>
 			<hr class="nmt nmb" style="border-color:#DDDC9F" />
-			<div data-b="order.form.otherdelivery" data-b-visible="value === true" class="hidden contentbody bg-yellow">
+			<div data-b="order.form.isdeliverydifferent" data-b-visible="value === true" class="hidden contentbody bg-yellow">
 				<div class="row">
 					<div class="col-md-6" style="margin-top:10px">
 						<a href="javascript:void(0)" class="copy exec" data-exec="ordercopyaddress"><i class="fa fa-copy"></i>@(Copy from billing address)</a>

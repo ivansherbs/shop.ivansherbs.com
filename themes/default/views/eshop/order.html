@@ -69,26 +69,16 @@
 				</div>
 				@{fi}
 
-				@{if !model.isfinished && !model.ispaid && model.payment == 'iDeal'}
+				@{if !model.isfinished && !model.ispaid && model.payment == 'PayPal'}
 					<br />
-					<form class="stripe-form color-ideal" action="stripe" method="GET">
-						<script
-							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-							data-key="@{config.stripe_apiKey}"
-							data-amount="@{model.price * 100}"
-							data-name="Ivan's Herbs"
-							data-image="/img/logo_for_stripe.png"
-							data-locale="auto"
-							data-currency="eur"
-							data-label="Pay with iDeal"
-							data-email="@{model.email}">
-						</script>
-					</form>
-					<div class="help">@(<b>iDeal</b> will redirect you to your bank.)</div>
+					<div class="color-paypal">
+						<button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Pay with PayPal)</button>
+					</div>
+					<div class="help">@(You will be redirect to secured <b>PayPal</b> payment page.)</div>
 				@{fi}
 				@{if !model.isfinished && !model.ispaid && model.payment == 'Credit card'}
 					<br />
-					<form class="stripe-form color-credit" action="stripe" method="GET">
+					<form class="stripe-form color-credit" action="credit" method="GET">
 						<script
 							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 							data-key="@{config.stripe_apiKey}"
@@ -103,12 +93,72 @@
 					</form>
 					<div class="help">@(<b>Credit card</b> payments are done via Stripe.)</div>
 				@{fi}
-				@{if !model.isfinished && !model.ispaid && model.payment == 'PayPal'}
+				@{if !model.isfinished && !model.ispaid && model.payment == 'iDeal'}
 					<br />
-					<div class="color-paypal">
-						<button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Pay with PayPal)</button>
-					</div>
-					<div class="help">@(You will be redirect to secured <b>PayPal</b> payment page.)</div>
+					<form id="payment-form" class="stripe-form color-ideal" action="#" method="GET">
+						<input type="hidden" name="name" value="@{model.firstname} @{model.lastname}">
+						<div id="ideal-bank-element" class="mb-s"></div>
+						<div>
+							<button id="ideal-button" class="button b" name="ideal" disabled>@(Pay with iDeal)</button>
+						</div>
+						<div id="error-message" role="alert"></div>
+						<script src="https://js.stripe.com/v3/"></script>
+						<script>
+							var stripe = Stripe('@{config.stripe_apiKey}');
+							var elements = stripe.elements();
+							var options = {
+							  style: {
+								base: {
+								  // Add your base input styles here. For example:
+								  fontSize: '16px',
+								  color: '#C06',
+								  padding: '10px 0'
+								}
+							  }
+							};
+							// Create an instance of the idealBank Element.
+							var idealBank = elements.create('idealBank', options);
+							// Add an instance of the idealBank Element into
+							// the `ideal-bank-element` <div>.
+							idealBank.mount('#ideal-bank-element');
+
+							var form = document.getElementById('payment-form');
+							form.addEventListener('submit', function(event) {
+								event.preventDefault();
+
+								var sourceData = {
+									type: 'ideal',
+									amount: 2800,
+									currency: 'eur',
+									owner: {
+										name: document.querySelector('input[name="name"]').value,
+									},
+									// Specify the URL to which the customer should be redirected
+									// after paying.
+									redirect: {
+										return_url: location.protocol + '//' + location.host + location.pathname + '/ideal';
+									}
+								};
+
+								// Call `stripe.createSource` with the idealBank Element and
+								// additional options.
+								stripe.createSource(idealBank, sourceData).then(function(result) {
+									if (result.error) {
+										// Inform the customer that there was an error.
+										var errorElement = document.getElementById('error-message');
+										errorElement.textContent = result.error.message;
+									} else {
+										// Redirect the customer to the authorization URL.
+										document.location.href = result.source.redirect.url;
+									}
+								});
+							});
+							idealBank.on('change', function(event) {
+								document.getElementById('ideal-button').disabled = false;
+							});
+						</script>
+					</form>
+					<div class="help">@(<b>iDeal</b> will redirect you to your bank.)</div>
 				@{fi}
 
 			</div>

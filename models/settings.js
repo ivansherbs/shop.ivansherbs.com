@@ -33,6 +33,7 @@ NEWSCHEMA('Settings').make(function(schema) {
 	schema.define('navigations', '[SettingsKeyValue]');
 	schema.define('deliverytypes', '[String]');
 	schema.define('paymenttypes', '[String]');
+	schema.define('deliverycountries', '[String]');
 	schema.define('defaultorderstatus', String);
 	schema.define('defaultcategories', String);
 	schema.define('users', '[SuperUser]');
@@ -98,6 +99,7 @@ NEWSCHEMA('Settings').make(function(schema) {
 		obj.paymenttypes = config.paymenttypes;
 		obj.notices = config.notices;
 		obj.deliverytypes = config.deliverytypes;
+		obj.deliverycountries = config.deliverycountries;
 		$.callback(obj);
 	});
 
@@ -165,6 +167,7 @@ NEWSCHEMA('Settings').make(function(schema) {
 
 			!settings.paymenttypes && (settings.paymenttypes = []);
 			!settings.deliverytypes && (settings.deliverytypes = []);
+			!settings.deliverycountries && (settings.deliverycountries = []);
 			!settings.signals && (settings.signals = []);
 			!settings.navigations && (settings.navigations = []);
 			!settings.posts && (settings.posts = []);

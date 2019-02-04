@@ -44,11 +44,12 @@
 								<div data-jc="textbox" data-jc-path="form.currency" data-jc-config="align:center;maxlength:10;required:true;placeholder:EUR">@(Currency)</div>
 							</div>
 						</div>
-						<div class="help">@(Supports) <code>EUR</code>, <code>USD</code>, <code>GBP</code>, <code>JPY</code>, <code>CZK</code> and <code>BRL</code></div>
-					</div>
-					<div class="col-md-6 col-sm-6 m">
+						<div class="help m">@(Supports) <code>EUR</code>, <code>USD</code>, <code>GBP</code>, <code>JPY</code>, <code>CZK</code> and <code>BRL</code></div>
 						<div data-jc="textboxlist" data-jc-path="form.deliverytypes" class="m" data-jc-config="icon:truck;placeholder:@(Type a value and press enter)">@(Delivery types)</div>
 						<div data-jc="textboxlist" data-jc-path="form.paymenttypes" class="m" data-jc-config="icon:credit-card;placeholder:@(Type a value and press enter)">@(Payment types)</div>
+					</div>
+					<div class="col-md-6 col-sm-6 m">
+						<div data-jc="textboxlist" data-jc-path="form.deliverycountries" class="m" data-jc-config="icon:globe;placeholder:@(Type a value and press enter)">@(Delivery countries)</div>
 					</div>
 				</div>
 			</div>

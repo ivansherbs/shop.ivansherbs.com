@@ -395,6 +395,7 @@ NEWSCHEMA('Order').make(function(schema) {
 		var obj = {};
 		obj.paymenttypes = F.global.config.paymenttypes;
 		obj.deliverytypes = F.global.config.deliverytypes;
+		obj.deliverycountries = F.global.config.deliverycountries;
 		$.callback(obj);
 	});
 

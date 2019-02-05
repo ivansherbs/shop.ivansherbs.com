@@ -24,10 +24,10 @@
 
 		<div class="row">
 			<div class="col-md-3">
-                <section class="categories mb10">
-                    <a href="/" class="logo">
-                        @{view('partials/logo')}
-                    </a>
+				<section class="categories mb10">
+					<a href="/" class="logo">
+						@{view('partials/logo')}
+					</a>
 					<div class="categoriescontainer hidden">
 						<div class="categoriesbody npb hidden">
 							<div class="caption">@(We recommend)</div>
@@ -41,15 +41,15 @@
 							<a href="@{sitemap_url('popular')}"><i class="fa fa-caret-right"></i>@(Popular products)<span>@(NEW)</span></a>
 							<a href="@{sitemap_url('category')}"><i class="fa fa-caret-right"></i>@(All products)</a>
 						</nav>
-                        <div class="account">
-                            @{if user}
-                                <a href="@{sitemap_url('account')}" class="b">@{user.name}</a>
-                                <a href="@{sitemap_url('settings')}"><i class="fa fa-cog"></i>@(Settings)</a>
-                                <a href="@{sitemap_url('logoff')}"><i class="fa fa-sign-out"></i>@(Sign out)</a>
-                            @{else}
-                                <a href="@{sitemap_url('account')}"><i class="fa fa-lock"></i>@(Sign in)</a>
-                            @{fi}
-                        </div>
+						<div class="account">
+							@{if user}
+								<a href="@{sitemap_url('account')}" class="b">@{user.name}</a>
+								<a href="@{sitemap_url('settings')}"><i class="fa fa-cog"></i>@(Settings)</a>
+								<a href="@{sitemap_url('logoff')}"><i class="fa fa-sign-out"></i>@(Sign out)</a>
+							@{else}
+								<a href="@{sitemap_url('account')}"><i class="fa fa-lock"></i>@(Sign in)</a>
+							@{fi}
+						</div>
 						<div class="categoriesbody npb">
 							<div class="caption">@(Categories)</div>
 						</div>
@@ -67,10 +67,11 @@
 								<a href="@{m.url}">@{if m.icon}<i class="fa fa-@{m.icon}"></i>@{fi}@{m.name}</a>
 							@{end}
 						</nav>
-						<div class="shoppingcart" data-m="shoppingcart.sum + shoppingcart">
-                            <a class="sc-icon" href="@{sitemap_url('checkout')}"><i class="fa fa-shopping-cart"></i></a>
-							<a class="sc-content" href="@{sitemap_url('checkout')}"><b data-b="shoppingcart.sum" data-b-html="'@{global.config.currency_entity}'.format(value ? value.format(2) : (0).format(2))">...</b><span>@(Your shopping cart)</span></a>
-						</div>
+						@{if self.route.url[0] !== 'checkout'}
+							<div class="shoppingcart" data-m="shoppingcart.sum + shoppingcart"> <a class="sc-icon" href="@{sitemap_url('checkout')}"><i class="fa fa-shopping-cart"></i></a>
+								<a class="sc-content" href="@{sitemap_url('checkout')}"><b data-b="shoppingcart.sum" data-b-html="'@{global.config.currency_entity}'.format(value ? value.format(2) : (0).format(2))">...</b><span>@(Your shopping cart)</span></a>
+							</div>
+						@{fi}
 						<form class="search hidden" action="@{sitemap_url('category')}" method="get">
 							<button><i class="fa fa-search"></i></button>
 							<div><input type="text" placeholder="@(Search products ...)" name="q" value="@{query.q}" id="search" autocomplete="off" /></div>

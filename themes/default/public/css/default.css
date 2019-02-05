@@ -185,7 +185,6 @@ h1 .fa, h2 .fa { margin-right: 10px; }
 .detail-outofstock .fa { margin-right: 8px; }
 
 .detail-buy button { background-color: #659AD2; border: 0; font-size: 18px; border-radius: 3px; color: #FFF; height: 60px; outline: 0; transition: all 0.3s; width: 100%; }
-.detail-buy button.is { background-color: #AF5DA4; color: #FFF; }
 .detail-buy .fa { margin-right: 8px; }
 .detail-prices { background-color: #FFF; box-shadow: 0 5px 10px rgba(0,0,0,0.05); }
 .detail-prices thead th { text-align: center; background-color: #FFFED9; }

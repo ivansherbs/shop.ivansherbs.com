@@ -235,7 +235,7 @@ function credit_process(id) {
 
 	if (data && data.stripeToken && data.stripeTokenType && data.stripeEmail) {
 
-		var stripe = require('stripe')(F.config['stripe_secretKey']);
+		var stripe = require('stripe')(F.global.config.stripesecretapikey);
 		(async () => {
 			const charge = await stripe.charges.create({
 				amount: 2800,

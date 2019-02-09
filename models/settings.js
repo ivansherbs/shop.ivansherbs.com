@@ -47,6 +47,10 @@ NEWSCHEMA('Settings').make(function(schema) {
 	schema.define('paypalsignature', String);
 	schema.define('paypaldebug', Boolean);
 
+	// Stripe account
+	schema.define('stripepublishableapikey', String);
+	schema.define('stripesecretapikey', String);
+
 	// Saves settings into the file
 	schema.setSave(function($) {
 

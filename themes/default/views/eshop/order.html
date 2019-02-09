@@ -81,7 +81,7 @@
 					<form class="stripe-form color-credit" action="credit" method="GET">
 						<script
 							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-							data-key="@{config.stripe_apiKey}"
+							data-key="@{global.config.stripepublishableapikey}"
 							data-amount="@{model.price * 100}"
 							data-name="Ivan's Herbs"
 							data-image="/img/logo_for_stripe.png"

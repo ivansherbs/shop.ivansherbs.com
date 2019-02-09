@@ -27,6 +27,20 @@
 				</div>
 			</script>
 		</div>
+		<div class="caption">@(Shipping costs)</div>
+		<div class="shipping" data-jc="shippingcosts" data-currency="@{global.config.currency_entity}" data-jc-config="Romania:10;" data-jc-value="'@'">
+			<div class="shipping-container" style="padding: 15px 15px 15px;">
+				<span class="shipping-error red hidden">@(Please select a delivery country)</span>
+				<div class="shipping-data hidden1">
+					<div class="shipping-value" style="float: right;"></div>
+					<b><span class="fa fa-truck" style="color: #000"></span> Shipping to <span class="shipping-country"></span></b>
+				</div>
+			</div>
+		</div>
+		<div class="grand-total">
+			<span class="b" style="height: 24px; padding: 7px;">TOTAL</span>
+			<b class="grand-total-value"></b>
+		</div>
 	</div>
 	<div class="col-md-7 m col-md-pull-5">
 		<div class="content">
@@ -63,7 +77,7 @@
 					<div class="col-md-6 m">
 						<div data-jc="textbox" data-jc-path="order.form.billingcity" data-jc-config="required:true;maxlength:50">@(City)</div>
 					</div>
-					<div class="col-md-6 m">
+					<div id="billingCountrySelect" class="col-md-6 m">
 						<div data-jc="dropdown" data-jc-path="order.form.billingcountry" data-jc-config="required:true;datasource:order.dependencies.deliverycountries;empty:">@(Country)</div>
 					</div>
 				</div>
@@ -204,12 +218,18 @@
 					skip = true;
 					var count = input.value.parseInt();
 					var ccontainer = $(input).closest('.checkout-container');
+					if (count == 0) {
+						ccontainer.find('.fa-times-circle').click();
+						return;
+					}
 					var shoppingcart = FIND('shoppingcart');
 					var product = shoppingcart.read(ccontainer.attrd('token'));
 					var item = ccontainer.get(0).$item;
 					count = shoppingcart.upd(product.token, count);
 					item.sum.html(currency.format((count * product.sum).format(2)));
 					input.value = count;
+					var shippingcosts = FIND('shippingcosts');
+					shippingcosts.updateValue();
 				}, 500, 10, this);
 			});
 
@@ -242,6 +262,81 @@
 				});
 			});
 		};
+	});
+
+	COMPONENT('shippingcosts', function(self, config) {
+
+		var currencye;
+		var country;
+		var costs;
+		var $total;
+
+		self.configure = function(key, value) {
+			// nothing needed yet
+		};
+
+		self.make = function() {
+			self.showError();
+			$total = $('.grand-total-value');
+			currency = self.attrd('currency') || '{0}';
+
+			$(document).on('change', '#billingCountrySelect select', function() {
+				var country = this.options[this.selectedIndex].value;
+				if (country) {
+					self.showShipping(country);
+				} else {
+					self.showError();
+				}
+			});
+		};
+
+		self.showError = function() {
+			var error = self.find('.shipping-error');
+			error.rclass('hidden');
+			var shipping = self.find('.shipping-data');
+			shipping.aclass('hidden');
+		};
+
+		self.showShipping = function(country) {
+			if (!country) {
+				delete self.country;
+				self.showError();
+				return;
+			}
+			self.country = country;
+			self.updateValue();
+			var shippingCountry = self.find('.shipping-country');
+			$(shippingCountry).text(self.country);
+			var error = self.find('.shipping-error');
+			error.aclass('hidden');
+			var shipping = self.find('.shipping-data');
+			shipping.rclass('hidden');
+		};
+
+		self.updateValue = function() {
+			if (!self.country) {
+				return;
+			}
+			var shoppingCart = FIND('shoppingcart');
+
+			// compute the shipping based on cart items
+			self.costs = 0;
+			var cartValue = 0;
+			var items = shoppingCart.items();
+			for (var i = 0; i < items.length; ++i) {
+				cartValue += items[i].count * items[i].price;
+				self.costs += items[i].count * (self.country == 'Netherlands' ? 5 : 10);
+			}
+			var valueTemplate = '@{global.config.currency_entity}';
+			var value = valueTemplate.format(self.costs.format(2));
+			value = $('<div/>').html(value).text();
+			var shippingValue = self.find('.shipping-value');
+			$(shippingValue).html(value);
+
+			// update the grand total value
+			var totalValue = self.costs + cartValue;
+			$total.html(currency.format(totalValue.format(2)));
+		}
 	});
 
 	function ordersubmit() {

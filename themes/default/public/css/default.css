@@ -203,9 +203,14 @@ h1 .fa, h2 .fa { margin-right: 10px; }
 .help .fa { margin-right: 5px; }
 .help code { font: normal normal 11px Arial; background-color: #F0F0F0; padding: 1px 3px; border-radius: 2px; border: 1px solid #E0E0E0; }
 
-.checkout { border: 2px solid #3F4450; border-radius: 3px; }
+.checkout, .shipping { border: 2px solid #3F4450; border-radius: 3px; }
 
-.checkout-container { border-top: 2px solid #3F4450; padding: 15px 15px 5px; font-size: 12px; background-color: #FFFED9; box-shadow: 0 5px 10px rgba(0,0,0,0.05); }
+.shipping-container { padding: 15px 15px 5px; font-size: 12px; background-color: #FFFED9; }
+.shipping-value { font-weight: bold; }
+.grand-total { height: 40px; margin: 15px 0 0 0; }
+.grand-total b { float: right; padding: 2px 20px; border-radius: 2px; font-size: 14px; color: #FFF; background-color: #AF5DA4; }
+
+.checkout-container { border-top: 2px solid #3F4450; padding: 15px 15px 5px; font-size: 12px; background-color: #FFFED9; }
 .checkout-container:first-child { border-top: 0; }
 .checkout-container .name { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-size: 14px; font-weight: bold; }
 .checkout-container .name .fa { color: red; margin-right: 5px; cursor: pointer; }

@@ -6,7 +6,7 @@
 <div style="margin-top:15px">@(Your order has been made successfully. You are on your way to learning more about Siberian herbal infusions. The power to stay healthy by drinking what nourishes your need is soon in your hands.)</div>
 <hr style="margin: 20px 0;border: 1px solid #F0F0F0;border-top: 0;" />
 <div style="margin-bottom:5px;line-height:18px;padding-bottom:5px">
-    <div style="">@(Order #): <span>@{model.id}</span></div>
+    <div style="">@(Order #): <span><a href="@{global.config.url}/checkout/@{model.id}">@{model.id}</a></span></div>
 </div>
 <div style="margin-bottom:5px;line-height:18px;padding-bottom:5px">
     <div style="">@(Customer): <span>@{model.name}</span></div>

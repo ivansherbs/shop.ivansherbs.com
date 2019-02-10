@@ -335,7 +335,7 @@ NEWSCHEMA('Order').make(function(schema) {
 			EMIT('orders.save', model);
 
 			// Sends email
-			var mail = MAIL(model.email, '@(Order #) ' + model.id, '=?/mails/order', model, model.language);
+			var mail = MAIL(model.email, '@(Order #) ' + model.id, '=ivansherbs/mails/order', model, model.language);
 			F.global.config.emailorderform && mail.bcc(F.global.config.emailorderform);
 
 			ADMIN.notify({ type: 'orders.create', message: model.name + ', ' + model.price.format(2) });

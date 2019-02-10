@@ -321,7 +321,7 @@ NEWSCHEMA('Order').make(function(schema) {
 					'deliverystreet': 'billingstreet',
 					'deliveryzip': 'billingzip',
 					'deliverycity': 'billingcity',
-					'deliverycountry': 'deliverycountry'
+					'deliverycountry': 'billingcountry'
 				}
 				for (var key in deliveryFields) {
 					model[key] = model[deliveryFields[key]];

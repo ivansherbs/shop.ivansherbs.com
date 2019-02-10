@@ -104,7 +104,7 @@
 						<div id="error-message" role="alert"></div>
 						<script src="https://js.stripe.com/v3/"></script>
 						<script>
-							var stripe = Stripe('@{config.stripe_apiKey}');
+							var stripe = Stripe('@{global.config.stripepublishableapikey}');
 							var elements = stripe.elements();
 							var options = {
 							  style: {

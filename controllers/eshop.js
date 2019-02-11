@@ -12,7 +12,7 @@ exports.install = function() {
 	ROUTE('#logoff', redirect_logoff, ['authorize']);
 
 	// Payment process
-	ROUTE('#order/paypal/', paypal_process, ['*Order', 10000]);
+	//ROUTE('#order/paypal/', paypal_process, ['*Order', 10000]);
 	ROUTE('#order/credit/', credit_process, ['*Order', 10000]);
 	ROUTE('#order/ideal/', ideal_process, ['*Order', 10000]);
 };
@@ -235,16 +235,31 @@ function credit_process(id) {
 
 	if (data && data.stripeToken && data.stripeTokenType && data.stripeEmail) {
 
-		var stripe = require('stripe')(F.global.config.stripesecretapikey);
-		(async () => {
-			const charge = await stripe.charges.create({
-				amount: 2800,
-				currency: 'eur',
-				description: 'Example charge',
+		var options = {};
+		self.id = options.id = id;
+
+		$GET('Order', options, (err, order) => {
+			if (err) {
+				self.redirect(url + '?paid=0');
+				return;
+			}
+
+			var stripe = require('stripe')(F.global.config.stripesecretapikey);
+			stripe.charges.create({
+				amount: order.price * 100,
+				currency: F.global.config.currency,
+				description: 'Order #' + order.id,
 				source: data.stripeToken
+			}, (err, charge) => {
+				if (err) {
+					// TODO log the stripe error
+					self.redirect(url + '?paid=0');
+					return;
+				}
+				self.$workflow('paid', () => self.redirect(url + '?paid=1'));
+				send_email.call(self, order);
 			});
-			self.$workflow('paid', () => self.redirect(url + '?paid=1'));
-		})();
+		});
 
 		return;
 	}
@@ -265,23 +280,42 @@ function ideal_process(id) {
 
 	if (data && data.source && data.client_secret) {
 
-		var stripe = require('stripe')(F.config['stripe_secretKey']);
-		stripe.charges.create({
-			amount: 2800,
-			currency: 'eur',
-			description: 'Example charge',
-			source: data.source
-		}, (err, charge) => {
+		var options = {};
+		self.id = options.id = id;
+
+		$GET('Order', options, (err, order) => {
 			if (err) {
-				// TODO log the stripe error
 				self.redirect(url + '?paid=0');
 				return;
 			}
-			self.$workflow('paid', () => self.redirect(url + '?paid=1'));
+
+			var stripe = require('stripe')(F.global.config.stripesecretapikey);
+			stripe.charges.create({
+				amount: order.price * 100,
+				currency: F.global.config.currency,
+				description: 'Order #' + order.id,
+				source: data.source
+			}, (err, charge) => {
+				if (err) {
+					// TODO log the stripe error
+					self.redirect(url + '?paid=0');
+					return;
+				}
+				self.$workflow('paid', () => self.redirect(url + '?paid=1'));
+				send_email.call(self, order);
+			});
 		});
 
 		return;
 	}
 
 	self.redirect(url + '?paid=0');
+}
+
+function send_email(order) {
+	var self = this;
+
+	// Sends email
+	var mail = MAIL(order.email, '@(Order #) ' + order.id, '=ivansherbs/mails/order', order, order.language);
+	F.global.config.emailorderform && mail.bcc(F.global.config.emailorderform);
 }

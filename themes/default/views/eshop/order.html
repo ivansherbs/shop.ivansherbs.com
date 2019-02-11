@@ -86,7 +86,7 @@
 							data-name="Ivan's Herbs"
 							data-image="/img/logo_for_stripe.png"
 							data-locale="auto"
-							data-currency="eur"
+							data-currency="@{global.config.currency}"
 							data-label="Pay with credit card"
 							data-email="@{model.email}">
 						</script>
@@ -128,8 +128,8 @@
 
 								var sourceData = {
 									type: 'ideal',
-									amount: 2800,
-									currency: 'eur',
+									amount: @{model.price * 100},
+									currency: '@{global.config.currency}',
 									owner: {
 										name: document.querySelector('input[name="name"]').value,
 									},

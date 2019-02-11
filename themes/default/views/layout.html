@@ -10,7 +10,8 @@
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,700" />
 	<link rel="stylesheet" href="@{global.css}" />
 	<script src="//cdn.componentator.com/spa.min@14.js"></script>
-	@{import('meta', 'head', 'default.css', 'default.js', 'favicon.ico')}
+	<link rel="shortcut icon" href="/favicon.png">
+	@{import('meta', 'head', 'default.css', 'default.js')}
 	<script>var LOGGED = +'@{if user}1@{else}0@{fi}';</script>
 </head>
 <body data-jc="exec,binder,modificator">

@@ -42,6 +42,7 @@ NEWSCHEMA('Order').make(function(schema) {
 	schema.define('price', Number);
 	schema.define('count', Number);
 	schema.define('items', '[OrderItem]', true);
+	schema.define('shipping', Number);
 
 	schema.define('company', 'String(40)', true);
 	schema.define('companyid', 'String(15)', true);

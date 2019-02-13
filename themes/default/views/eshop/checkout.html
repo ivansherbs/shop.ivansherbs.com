@@ -31,9 +31,10 @@
 		<div class="shipping" data-jc="shippingcosts" data-currency="@{global.config.currency_entity}" data-jc-config="Romania:10;" data-jc-value="'@'">
 			<div class="shipping-container" style="padding: 15px 15px 15px;">
 				<span class="shipping-error red hidden">@(Please select a delivery country)</span>
-				<div class="shipping-data hidden1">
+				<div class="shipping-data hidden">
 					<div class="shipping-value" style="float: right;"></div>
 					<b><span class="fa fa-truck" style="color: #000"></span> Shipping to <span class="shipping-country"></span></b>
+					<div class="hidden" data-jc="textbox" data-jc-path="order.form.shipping"></div>
 				</div>
 			</div>
 		</div>
@@ -332,6 +333,7 @@
 			value = $('<div/>').html(value).text();
 			var shippingValue = self.find('.shipping-value');
 			$(shippingValue).html(value);
+			SET('order.form.shipping', self.costs, true);
 
 			// update the grand total value
 			var totalValue = self.costs + cartValue;

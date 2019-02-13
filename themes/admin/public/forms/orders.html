@@ -122,11 +122,9 @@
 	</div>
 	<div class="padding npb">
 		<div class="row">
-<!--
 			<div class="col-md-6 m">
-				<div data-jc="textbox" data-jc-path="orders.form.delivery" data-jc-config="required:true;maxlength:50;icon:truck">@(Delivery)</div>
+				<div data-jc="textbox" data-jc-path="orders.form.delivery" data-jc-config="required:false;maxlength:50;icon:truck">@(Delivery)</div>
 			</div>
--->
 			<div class="col-md-6 m">
 				<div data-jc="textbox" data-jc-path="orders.form.payment" data-jc-config="required:true;maxlength:50;icon:credit-card">@(Payment)</div>
 			</div>
@@ -239,6 +237,9 @@
 		</div>
 	</div>
 	<div class="padding">
+		<div class="caption"><i class="fa fa-truck"></i>@(Shipping)</div>
+		<div data-jc="textbox" data-jc-path="orders.form.shipping" data-jc-config="required:true;maxlength:50;icon:truck">@(Charged)</div>
+		<br />
 		<div class="caption"><i class="fa fa-shopping-cart"></i>@(Ordered products)</div>
 		<div class="help nmt"><b><i class="fa fa-warning mr5"></i>@(IMPORTANT:)</b> @(count of products in stock is not affected by change of count of ordered products)</div>
 		<br />

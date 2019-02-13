@@ -21,10 +21,10 @@
     <div style="">@(Ordered items): <span>@{!model.price.currency()}</span></div>
 </div>
 <div style="margin-bottom:5px;line-height:18px">
-    <div style="">@(Shipping): <span>@{!model.price.currency()}</span></div>
+    <div style="">@(Shipping): <span>@{!model.shipping.currency()}</span></div>
 </div>
 <div style="margin-bottom:5px;line-height:18px">
-    <div style="">@(Total price): <span style="font-weight:bold">@{!model.price.currency()}</span></div>
+    <div style="">@(Total price): <span style="font-weight:bold">@{!(model.price + model.shipping).currency()}</span></div>
 </div>
 <div style="margin:25px 0 10px;color:black;font-weight:bold;font-size:11px">@(Delivery address)</div>
 <div>@{model.deliveryfirstname} @{model.deliverylastname}<br />@{model.deliverystreet}<br />@{model.deliveryzip} @{model.deliverycity}<br />@{model.deliverycountry}<br /></div>

@@ -194,8 +194,14 @@
 				</div>
 				<div class="col-md-6 m">
 					<div class="keyvalue">
-						<div class="key">@(Ordered of items)</div>
+						<div class="key">@(Ordered items)</div>
 						<div class="value">@{model.count}x</div>
+					</div>
+				</div>
+				<div class="col-md-6 m">
+					<div class="keyvalue">
+						<div class="key">@(Shipping)</div>
+						<div class="value">@{!model.shipping.currency()}</div>
 					</div>
 				</div>
 <!--

@@ -10,7 +10,7 @@
   "dependencies": {
     "paypal-express-checkout": "1.6.3",
     "stripe": "6.23.0",
-    "total.js": "3.1.0"
+    "total.js": "3.2.3"
   },
   "scripts": {
     "start": "node debug.js",

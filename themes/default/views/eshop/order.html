@@ -43,6 +43,15 @@
 
 			<hr class="nmt nmb" />
 
+			@{if query.paid === '1'}
+			<div class="contentbody">
+				<div>
+					<div class="value"><a class="b" href="./">@(Click here)</a> @(for the order details.)</div>
+				</div>
+			</div>
+			@{fi}
+
+			@{if query.paid !== '1'}
 			<div class="contentbody">
 				<div class="keyvalue">
 					<div class="key">@(Customer)</div>
@@ -162,8 +171,10 @@
 				@{fi}
 
 			</div>
+			@{fi}
 		</div>
 		<br />
+		@{if query.paid !== '1'}
 		<div style="padding:10px">
 			<div class="row">
 				<div class="col-md-6 m">
@@ -220,7 +231,9 @@
 -->
 			</div>
 		</div>
+		@{fi}
 	</div>
+	@{if query.paid !== '1'}
 	<div class="col-md-6">
 		<div class="content">
 			<div class="contentbody bg-yellow">
@@ -253,7 +266,9 @@
 			</div>
 		</div>
 	</div>
+	@{fi}
 </div>
+@{if query.paid !== '1'}
 <br />
 <h2>@(Ordered items)</h2>
 <table class="table table-bordered bg-white">
@@ -281,6 +296,7 @@
 		</tr>
 	</tfoot>
 </table>
+@{fi}
 
 <script>
 	function pay(btn) {

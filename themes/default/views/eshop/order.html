@@ -234,10 +234,12 @@
 					<div class="key"><i class="fa fa-dropbox"></i>@(Payment)</div>
 					<div class="value">@{model.payment}@{if model.ispaid}<span class="badge badge-green">@(PAID)</span>@{else}<span class="badge">@(NOT PAID)</span>@{fi}</div>
 				</div>
+<!--
 				<div class="keyvalue m">
 					<div class="key"><i class="fa fa-at"></i>@(Tracking code)</div>
 					<div class="value">@{if model.trackingcode}@{model.trackingcode}@{else}@(Undefined)@{fi}</div>
 				</div>
+-->
 			</div>
 			<div class="contentbody">
 				<div class="keyvalue m">

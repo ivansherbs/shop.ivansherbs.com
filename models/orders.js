@@ -178,11 +178,11 @@ NEWSCHEMA('Order').make(function(schema) {
 
 		var model = $.model;
 
-		// Check terms and conditions
-		if (!model.isterms) {
-			$.invalid('error-terms');
-			return;
-		}
+		//// Check terms and conditions
+		//if (!model.isterms) {
+		//	$.invalid('error-terms');
+		//	return;
+		//}
 
 		var options = { id: [] };
 		for (var i = 0, length = model.items.length; i < length; i++)

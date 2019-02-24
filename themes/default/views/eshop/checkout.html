@@ -148,9 +148,11 @@
 				<div class="help">@(Please choose a type of payment.)</div>
 			</div>
 			<div class="contentbody">
+<!--
 				<div data-jc="textarea" data-jc-path="order.form.note" class="m">@(Note)</div>
 				<div data-jc="checkbox" data-jc-path="order.form.isnewsletter" data-jc-value="true">@(I want to receive the) <b>@(Ivan's Herbs newsletter)</b></div>
 				<div data-jc="checkbox" data-jc-path="order.form.isterms" class="m b red">@(I agree with terms and conditions)</div>
+-->
 				<div data-jc="error" data-jc-path="order.form.response"></div>
 				<div data-jc="validation" data-jc-path="order.form" data-jc-config="flags:visible">
 					<button class="button b exec" data-exec="ordersubmit" name="submit" disabled="disabled"><i class="fa fa-send"></i>@(Submit order)</button>

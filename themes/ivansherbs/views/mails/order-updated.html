@@ -1,0 +1,10 @@
+@{layout('~mails/layout')}
+
+<div style="font-size:20px"><b>@{model.firstname}, @(we have some updates regarding your order.)</b></div>
+<br />
+<div style="margin-bottom:15px;line-height:18px">
+    <div style="">@(Order #): <span><a style="font-weight:bold;text-decoration:none;color:#377BB5" href="@{global.config.url}/checkout/@{model.id}">@{model.id}</a></span></div>
+</div>
+<div style="margin-bottom:15px;line-height:18px">
+	<div>@(Message): @{model.status}</div>
+</div>

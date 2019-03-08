@@ -316,6 +316,6 @@ function send_email(order) {
 	var self = this;
 
 	// Sends email
-	var mail = MAIL(order.email, '@(Order #) ' + order.id, '=ivansherbs/mails/order', order, order.language);
+	var mail = MAIL(order.email, '@(Order #) ' + order.id, '=ivansherbs/mails/order-created', order, order.language);
 	F.global.config.emailorderform && mail.bcc(F.global.config.emailorderform);
 }

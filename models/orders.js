@@ -169,8 +169,19 @@ NEWSCHEMA('Order').make(function(schema) {
 			$.success();
 		});
 
+		// choose the order email template based on status
+		var orderTemplate = 'order-updated';
+		switch (model.status) {
+			case 'Order received':
+				orderTemplate = 'order-created';
+				break;
+			case 'Goods sent':
+				orderTemplate = 'order-shipped';
+				break;
+		}
+
 		// Sends email
-		isemail && MAIL(model.email, '@(Order status #) ' + model.id, '=?/mails/order-status', model, model.language);
+		isemail && MAIL(model.email, '@(Order status #) ' + model.id, '=ivansherbs/mails/' + orderTemplate, model, model.language);
 	});
 
 	// Creates order

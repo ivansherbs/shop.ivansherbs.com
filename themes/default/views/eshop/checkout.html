@@ -205,9 +205,10 @@
 			self.template = VIRTUALIZE(el.html(), { name: '.name b', count: 'input', price: '.price span', variant: '.variant', sum: '.sum', stock: '.stock b' });
 			currency = self.attrd('currency') || '{0}';
 
-			self.html('<div class="checkout"></div><div class="checkout-summarize"><b></b></div>');
+			self.html('<div class="checkout"/><div class="checkout-summarize"><b></b></div><div class="facebook-pixel-event"/>');
 			container = self.find('.checkout');
 			summarize = self.find('.checkout-summarize b');
+			pixelevent = self.find('.facebook-pixel-event');
 
 			self.event('click', '.fa-times-circle', function() {
 				var ccontainer = $(this).closest('.checkout-container');
@@ -238,6 +239,9 @@
 
 			self.on('shoppingcart.sum', function(data) {
 				summarize.html(currency.format(data.sum.format(2)));
+				if (data.sum > 0) {
+					pixelevent.html('<script>fbq("track", "InitiateCheckout", { value: ' + data.sum + ', currency: "@{global.config.currency}" });</' + 'script>');
+				}
 				!skip && self.render();
 			});
 		};

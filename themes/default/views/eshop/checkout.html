@@ -336,7 +336,23 @@
 			var items = shoppingCart.items();
 			for (var i = 0; i < items.length; ++i) {
 				cartValue += items[i].count * items[i].price;
-				self.costs += items[i].count * (['Belgium', 'Luxembourg', 'Netherlands'].indexOf(self.country) !== -1 ? 5 : 10);
+				var unitShippingCost = 0;
+				switch (self.country) {
+					case 'Netherlands':
+						unitShippingCost = 0;
+						break;
+					case 'Belgium':
+					case 'Luxembourg':
+						unitShippingCost = 7.85;
+						break;
+					case 'Germany':
+						unitShippingCost = 7.85;
+						break;
+					default:
+						unitShippingCost = 10;
+						break;
+				}
+				self.costs += items[i].count * unitShippingCost;
 			}
 			var valueTemplate = '@{global.config.currency_entity}';
 			var value = valueTemplate.format(self.costs.format(2));

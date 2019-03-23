@@ -13,6 +13,14 @@
 			<div class="contentsuccess">
 				<i class="fa fa-check-circle"></i>@(<b>Thank you</b>, order has been paid.)
 			</div>
+			<!-- Facebook Pixel Code -->
+			<script>
+				fbq('track', 'Purchase', {
+					value: @{model.price},
+					currency: 'EUR'
+				});
+			</script>
+			<!-- End Facebook Pixel Code -->
 			@{fi}
 
 			@{if model.isfinished}

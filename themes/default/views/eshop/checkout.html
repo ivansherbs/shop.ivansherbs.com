@@ -239,9 +239,13 @@
 
 			self.on('shoppingcart.sum', function(data) {
 				summarize.html(currency.format(data.sum.format(2)));
+
+				// Facebook Pixel Code
 				if (data.sum > 0) {
 					pixelevent.html('<script>fbq("track", "InitiateCheckout", { value: ' + data.sum + ', currency: "@{global.config.currency}" });</' + 'script>');
 				}
+				// End Facebook Pixel Code
+
 				!skip && self.render();
 			});
 		};

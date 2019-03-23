@@ -195,6 +195,14 @@ COMPONENT('shoppingcart', 'discount:0;expiration:6 days', function(self, config)
 		}
 
 		setTimeout2(self.id + '.sum', self.sum, 100);
+
+		// Facebook Pixel Code
+		fbq('track', 'AddToCart', {
+			value: price,
+			currency: 'EUR'
+        });
+		// End Facebook Pixel Code
+
 		EMIT('shoppingcart.add', item);
 	};
 
